@@ -167,7 +167,8 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
-        "KEY_PREFIX": "stockapi"
+        "KEY_PREFIX": "stockapi",
+        "TIMEOUT": 300,
     }
 }
 
