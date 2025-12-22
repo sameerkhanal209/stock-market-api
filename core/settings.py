@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import sys
 import os
 from dotenv import load_dotenv
 
@@ -21,6 +22,9 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Add apps/ to Python path
+APPS_DIR = BASE_DIR / "apps"
+sys.path.insert(0, str(APPS_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -45,12 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework_simplejwt',
 
-    'accounts',
-    'stocks',
-    'watchlists',
-    'pricing',
-    'notifications',
+    'apps.accounts',
+    'apps.stocks',
+    'apps.watchlists',
+    'apps.pricing',
+    'apps.notifications',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +168,17 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_ENABLE_UTC = True
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_WORKER_LOG_LEVEL = 'INFO'
+CELERY_BEAT_LOG_LEVEL = 'INFO'
+
+AUTH_USER_MODEL = "accounts.User"
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
