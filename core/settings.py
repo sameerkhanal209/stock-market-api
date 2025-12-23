@@ -193,3 +193,12 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'ingest-stock-prices-every-5-minutes': {
+        'task': 'apps.pricing.tasks.ingest_stock_prices',
+        'schedule': crontab(minute='*/5'),  # Every 5 minutes
+    },
+}
