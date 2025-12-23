@@ -16,6 +16,8 @@ class StockViewSet(viewsets.ModelViewSet):
     serializer_class = StockSerializer
     lookup_field = 'symbol'
     permission_classes = [IsAuthenticated]
+    ordering_fields = ['symbol', 'name', 'created_at']
+    ordering = '-created_at'
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
