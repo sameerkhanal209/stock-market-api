@@ -9,7 +9,7 @@ This project implements **all required features** specified in the task.
 
 ```bash
 # Clone the repository
-git clone [text](https://github.com/sameerkhanal209/stock-market-api)
+git clone https://github.com/sameerkhanal209/stock-market-api
 cd stock-market-api
 
 # Start the full stack
