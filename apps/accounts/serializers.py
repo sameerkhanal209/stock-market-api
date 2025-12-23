@@ -15,3 +15,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'full_name', 'tier', 'timezone', 'preferred_currency', 'is_active', 'date_joined']
+        read_only_fields = fields
