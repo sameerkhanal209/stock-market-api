@@ -5,8 +5,8 @@ from .models import Stock, StockPrice
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = ['id', 'symbol', 'name', 'exchange', 'currency', 'is_active', 'created_at']
-        read_only_fields = ['created_at']
+        fields = ['id', 'symbol', 'name', 'exchange', 'currency', 'is_active', 'created_at', 'created']
+        read_only_fields = ['created_at', 'created']
 
 
 class StockPriceSerializer(serializers.ModelSerializer):

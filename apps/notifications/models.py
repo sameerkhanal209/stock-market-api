@@ -11,6 +11,7 @@ class Notification(models.Model):
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE, null=True, blank=True)
     read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         indexes = [

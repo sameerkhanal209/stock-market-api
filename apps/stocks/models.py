@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class StockManager(models.Manager):
     def active(self):
-        return self.filter(is_active=True)
+        return self.filter(is_active=True).order_by('-created_at')
 
 
 class Stock(models.Model):
@@ -14,6 +14,7 @@ class Stock(models.Model):
     currency = models.CharField(max_length=3, default="USD")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     objects = StockManager()
 
@@ -24,6 +25,8 @@ class Stock(models.Model):
         ]
         verbose_name = "Stock"
         verbose_name_plural = "Stocks"
+        ordering = ["-created_at"]
+
 
     def __str__(self):
         return f"{self.symbol} - {self.name}"

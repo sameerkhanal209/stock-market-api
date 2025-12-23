@@ -10,6 +10,7 @@ class Watchlist(models.Model):
     name = models.CharField(max_length=100)
     is_default = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('user', 'name')

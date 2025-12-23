@@ -49,6 +49,7 @@ urlpatterns = [
     path('api/v1/', include('apps.stocks.urls')),
     path('api/v1/', include('apps.watchlists.urls')),
     path('api/v1/', include('apps.notifications.urls')),
+    path('api/v1/', include('apps.accounts.urls')),
 
     # OpenAPI Schema (JSON)
     path('openapi.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
